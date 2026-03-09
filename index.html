@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#c9a96e"/>
+  <title>TravelWise24 — Smart Diaspora Travel Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+
+  <div id="app">
+    <header id="appHeader">
+      <div class="header-left">
+        <div class="logo">
+          <div class="logo-icon">✈️</div>
+          <div class="logo-words">
+            <span class="logo-text">Travel<span class="logo-accent">Wise</span>24</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button class="location-toggle" id="locationToggle">
+          <span id="locationFlag">🇮🇪</span>
+          <span id="locationName">Dublin</span>
+          <span class="caret">▾</span>
+        </button>
+        <button class="icon-btn" id="savedBtn" title="Saved trips">❤️</button>
+      </div>
+    </header>
+
+    <div class="dropdown hidden" id="locationDropdown">
+      <button class="dropdown-option active" data-city="dublin" data-airport="DUB" data-flag="🇮🇪">🇮🇪 Dublin</button>
+      <button class="dropdown-option" data-city="london" data-airport="LHR" data-flag="🇬🇧">🇬🇧 London</button>
+      <button class="dropdown-option" data-city="manchester" data-airport="MAN" data-flag="🇬🇧">🇬🇧 Manchester</button>
+      <button class="dropdown-option" data-city="birmingham" data-airport="BHX" data-flag="🇬🇧">🇬🇧 Birmingham</button>
+    </div>
+
+    <main id="mainContent">
+      <section class="greeting-section">
+        <p class="greeting-tag" id="greetingTag">TRAVELWISE24</p>
+        <h1 class="greeting-main" id="greetingMain">Good evening 👋</h1>
+        <p class="greeting-sub" id="greetingSub">Where do you want to escape to?</p>
+      </section>
+
+      <section class="mode-section">
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="going-home"><span>🏠</span><span>Going Home</span></button>
+          <button class="mode-tab" data-mode="weekend-escape"><span>✈️</span><span>Weekend Escape</span></button>
+          <button class="mode-tab" data-mode="weekend-vibes"><span>🎵</span><span>Weekend Vibes</span></button>
+        </div>
+      </section>
+
+      <section class="content-section" id="contentSection"></section>
+    </main>
+
+    <div class="wise-panel hidden" id="wisePanel">
+      <div class="wise-header">
+        <div class="wise-avatar-wrap">
+          <div class="wise-avatar">✈️</div>
+          <div class="wise-online-dot"></div>
+        </div>
+        <div class="wise-header-info">
+          <div class="wise-name">Wise</div>
+          <div class="wise-status" id="wiseStatus">Your personal escape advisor</div>
+        </div>
+        <button class="wise-close" id="wiseClose">✕</button>
+      </div>
+      <div class="wise-messages" id="wiseMessages"></div>
+      <div class="wise-voice-bar hidden" id="wiseVoiceBar">
+        <div class="voice-waves">
+          <div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div><div class="vw"></div>
+        </div>
+        <span>Listening...</span>
+      </div>
+      <div class="wise-input-area">
+        <div class="wise-input-row">
+          <textarea id="wiseInput" placeholder="Ask Wise anything..." rows="1"></textarea>
+          <button class="wise-mic" id="wiseMic" title="Speak">🎤</button>
+          <button class="wise-send" id="wiseSend">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay hidden" id="overlay"></div>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-mode="going-home">
+        <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
+      </button>
+      <button class="nav-item" data-mode="weekend-escape">
+        <span class="nav-icon">✈️</span><span class="nav-label">Escape</span>
+      </button>
+      <button class="nav-item wise-nav-btn" id="wiseNavBtn">
+        <div class="wise-nav-icon">✈️</div>
+        <span class="nav-label">Wise</span>
+      </button>
+      <button class="nav-item" data-mode="weekend-vibes">
+        <span class="nav-icon">🎵</span><span class="nav-label">Vibes</span>
+      </button>
+      <button class="nav-item" id="savedNavBtn">
+        <span class="nav-icon">❤️</span><span class="nav-label">Saved</span>
+      </button>
+    </nav>
+
+    <div class="install-banner hidden" id="installBanner">
+      <span>📲 Add TravelWise24 to your home screen</span>
+      <button id="installBtn">Install</button>
+      <button class="install-dismiss" id="installDismiss">✕</button>
+    </div>
+  </div>
+<script src="js/state.js"></script>
+<script src="js/api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/wise.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
