@@ -1358,3 +1358,29 @@ body::after {
   .greeting-main { font-size: 1.7rem; }
 }
   
+/* ===== WISE CHAT INPUT ===== */
+
+.wise-input{
+ display:flex;
+ border-top:1px solid #333;
+}
+
+.wise-input input{
+ flex:1;
+ padding:10px;
+ background:#222;
+ border:none;
+ color:white;
+}
+
+.wise-input button{
+ padding:10px 16px;
+ background:#ffb84d;
+ border:none;
+ cursor:pointer;
+ border-radius:6px;
+}
+
+.hidden{
+ display:none;
+}
