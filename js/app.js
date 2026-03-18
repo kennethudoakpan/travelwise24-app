@@ -244,7 +244,37 @@ const App = (() => {
 
   // Run on DOM ready
   document.addEventListener('DOMContentLoaded', init);
+// Wise button control
+const wiseBtn = document.getElementById("wiseNavBtn");
+const wiseChat = document.getElementById("wiseChat");
 
-  return { openWise, closeWise, showSaved, clearSaved, removeSaved };
+wiseBtn.addEventListener("click", () => {
+  wiseChat.classList.toggle("hidden");
+});
+// Wise chat send message
+const wiseInput = document.getElementById("wiseInput");
+const wiseSend = document.getElementById("wiseSend");
+const wiseMessages = document.getElementById("wiseMessages");
+
+wiseSend.addEventListener("click", async () => {
+
+  const question = wiseInput.value;
+
+  if (!question) return;
+
+  wiseMessages.innerHTML += `<div>👤 ${question}</div>`;
+
+  const response = await fetch(`/api/wise?message=${encodeURIComponent(question)}`);
+
+  const data = await response.json();
+
+  wiseMessages.innerHTML += `<div>✈️ ${data.reply}</div>`;
+
+  wiseInput.value = "";
+
+});
+
+// Return app functions
+return { openWise, closeWise, showSaved, clearSaved, removeSaved };
 
 })();
