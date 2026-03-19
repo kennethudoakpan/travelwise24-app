@@ -2,7 +2,7 @@ export default async function handler(req, res) {
 
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-  const message = req.query.message || "Suggest a cheap flight from Dublin to Lagos";
+  const message = req.body?.message || req.query?.message || "Suggest a cheap flight from Dublin to Lagos";
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -27,8 +27,10 @@ export default async function handler(req, res) {
 
   const data = await response.json();
 
-  res.status(200).json({
-    reply: data.choices[0].message.content
-  });
+const reply =
+  data?.choices?.[0]?.message?.content ||
+  "Wise couldn't generate a response right now. Please try again.";
+
+res.status(200).json({ reply });
 
 }

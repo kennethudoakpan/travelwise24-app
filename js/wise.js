@@ -55,7 +55,7 @@ TONE EXAMPLES:
 Remember: you're not a booking agent. You're that friend who's always on top of flight deals and knows where to go.`;
 
   // ============================
-  // SEND MESSAGE TO CLAUDE
+  // SEND MESSAGE TO wise api
   // ============================
 
   async function send(userMessage) {
@@ -82,22 +82,20 @@ Remember: you're not a booking agent. You're that friend who's always on top of 
     }
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
-          messages: messages
-        })
-      });
+      const response = await fetch('/api/wise', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    message: userMessage
+  })
+});
 
       const data = await response.json();
       removeTyping();
 
-      const reply = data.content?.[0]?.text || "Sorry, something went wrong on my end. Give me a second and try again!";
-
+     const reply = data.reply || "Sorry, something went wrong on my end. Give me a second and try again!";
       addMessageToUI(reply, 'ai');
       State.addWiseMessage('assistant', reply);
 
