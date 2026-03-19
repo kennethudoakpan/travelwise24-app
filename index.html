@@ -60,6 +60,31 @@
       </section>
 
       <section class="content-section" id="contentSection"></section>
+
+<!-- Wise AI Prompt -->
+<div class="wise-prompt">
+  ✈ Planning a trip home?
+
+  <p>Ask Wise to find the cheapest flights, visa rules and best airlines.</p>
+
+  <button onclick="openWise()">Ask Wise</button>
+</div>
+
+<div class="wise-suggestions">
+
+<button onclick="Wise.sendChip('Cheapest flights to Lagos')">
+Cheapest flights to Lagos
+</button>
+
+<button onclick="Wise.sendChip('Best time to fly to Nigeria')">
+Best time to travel
+</button>
+
+<button onclick="Wise.sendChip('Do Nigerians need visa for Ghana')">
+Visa requirements
+</button>
+
+</div>
     </main>
 
     <div class="wise-panel hidden" id="wisePanel">
@@ -90,19 +115,7 @@
       </div>
     </div>
 
-    <div class="overlay hidden" id="overlay"></div>
-    <div id="wiseChat" class="wise-chat hidden">
-
-  <div class="wise-header">
-    ✈️ Wise Travel Assistant
-  </div>
-
-  <div id="wiseMessages" class="wise-messages"></div>
-
-  <div class="wise-input">
-    <input id="wiseInput" placeholder="Ask about flights, visas, travel..." />
-    <button id="wiseSend">Send</button>
-  </div>
+    
 
 </div>
 
