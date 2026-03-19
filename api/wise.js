@@ -59,9 +59,16 @@ Keep answers short and helpful.
 
   const data = await response.json();
 
+if (!response.ok) {
+  console.error("OpenAI error:", data);
+  return res.status(500).json({
+    reply: "Wise had trouble reaching the AI service. Please try again."
+  });
+}
+
 const reply =
   data?.choices?.[0]?.message?.content ||
-  "Wise couldn't generate a response right now. Please try again.";
+  "Wise couldn't generate a response right now.";
 
 res.status(200).json({ reply });
 
