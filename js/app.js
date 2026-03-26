@@ -92,13 +92,13 @@ const App = (() => {
     const display = opt.dataset.display;
 
     State.setLocation(city, airport, flag, display);
+
     UI.updateLocationUI();
     UI.updateGreeting();
 
     document.querySelectorAll('.dropdown-option').forEach(o => o.classList.remove('active'));
     opt.classList.add('active');
 
-    // 👇 add this (important)
     document.getElementById('locationDropdown').classList.add('hidden');
 
     UI.showMode(State.get('currentMode'));
