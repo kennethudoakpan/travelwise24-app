@@ -84,27 +84,26 @@ const App = (() => {
       document.getElementById('locationDropdown').classList.toggle('hidden');
     });
 
-    document.querySelectorAll('.dropdown-option').forEach(opt => {
-      opt.addEventListener('click', () => {
-        const city = opt.dataset.city;
-        const airport = opt.dataset.airport;
-        const flag = opt.dataset.flag;
-        const display = opt.textContent.trim().split(' ').slice(1).join(' ');
+  document.querySelectorAll('.dropdown-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const city = opt.dataset.city;
+    const airport = opt.dataset.airport;
+    const flag = opt.dataset.flag;
+    const display = opt.dataset.display;
 
-        State.setLocation(city, airport, flag, display);
-        UI.updateLocationUI();
-        UI.updateGreeting();
+    State.setLocation(city, airport, flag, display);
+    UI.updateLocationUI();
+    UI.updateGreeting();
 
-        // Update active state
-        document.querySelectorAll('.dropdown-option').forEach(o => o.classList.remove('active'));
-        opt.classList.add('active');
+    document.querySelectorAll('.dropdown-option').forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
 
-        document.getElementById('locationDropdown').classList.add('hidden');
+    // 👇 add this (important)
+    document.getElementById('locationDropdown').classList.add('hidden');
 
-        // Re-render current mode with new location
-        UI.showMode(State.get('currentMode'));
-      });
-    });
+    UI.showMode(State.get('currentMode'));
+  });
+});
 
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
@@ -244,37 +243,16 @@ const App = (() => {
 
   // Run on DOM ready
   document.addEventListener('DOMContentLoaded', init);
-// Wise button control
-const wiseBtn = document.getElementById("wiseNavBtn");
-const wiseChat = document.getElementById("wiseChat");
 
-wiseBtn.addEventListener("click", () => {
-  wiseChat.classList.toggle("hidden");
-});
-// Wise chat send message
-const wiseInput = document.getElementById("wiseInput");
-const wiseSend = document.getElementById("wiseSend");
-const wiseMessages = document.getElementById("wiseMessages");
-
-wiseSend.addEventListener("click", async () => {
-
-  const question = wiseInput.value;
-
-  if (!question) return;
-
-  wiseMessages.innerHTML += `<div>👤 ${question}</div>`;
-
-  const response = await fetch(`/api/wise?message=${encodeURIComponent(question)}`);
-
-  const data = await response.json();
-
-  wiseMessages.innerHTML += `<div>✈️ ${data.reply}</div>`;
-
-  wiseInput.value = "";
-
-});
 
 // Return app functions
 return { openWise, closeWise, showSaved, clearSaved, removeSaved };
+// /
 
 })();
+// ===== FLIGHT LINK HELPER =====
+function openFlight(from, to) {
+  const url = `https://www.skyscanner.net/transport/flights/${from}/${to}/`;
+  window.open(url, '_blank', 'noopener');
+}
+

@@ -4,10 +4,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <meta name="theme-color" content="#c9a96e"/>
+  <meta name="description" content="TravelWise24 — AI-powered travel assistant for Africans abroad. Find cheap flights, plan weekend escapes, and discover local vibes."/>
   <title>TravelWise24 — Smart Diaspora Travel Assistant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css"/>
+
 </head>
 <body>
 
@@ -37,20 +39,124 @@
       </div>
     </header>
 
-    <div class="dropdown hidden" id="locationDropdown">
-      <button class="dropdown-option active" data-city="dublin" data-airport="DUB" data-flag="🇮🇪">🇮🇪 Dublin</button>
-      <button class="dropdown-option" data-city="london" data-airport="LHR" data-flag="🇬🇧">🇬🇧 London</button>
-      <button class="dropdown-option" data-city="manchester" data-airport="MAN" data-flag="🇬🇧">🇬🇧 Manchester</button>
-      <button class="dropdown-option" data-city="birmingham" data-airport="BHX" data-flag="🇬🇧">🇬🇧 Birmingham</button>
+    <!-- COUNTRY SELECTOR DROPDOWN -->
+    <div class="country-dropdown hidden" id="locationDropdown">
+      <p class="country-dropdown-label">Where are you flying from?</p>
+
+      <button class="country-option active dropdown-option" data-city="dublin" data-airport="DUB" data-flag="🇮🇪" data-display="Dublin">
+        <span class="c-flag">🇮🇪</span>
+        <span class="c-info"><span class="c-name">Ireland</span><span class="c-city">Dublin · DUB</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="london" data-airport="LHR" data-flag="🇬🇧" data-display="London">
+        <span class="c-flag">🇬🇧</span>
+        <span class="c-info"><span class="c-name">United Kingdom</span><span class="c-city">London Heathrow · LHR</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="manchester" data-airport="MAN" data-flag="🇬🇧" data-display="Manchester">
+        <span class="c-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+        <span class="c-info"><span class="c-name">UK — North</span><span class="c-city">Manchester · MAN</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="birmingham" data-airport="BHX" data-flag="🇬🇧" data-display="Birmingham">
+        <span class="c-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+        <span class="c-info"><span class="c-name">UK — Midlands</span><span class="c-city">Birmingham · BHX</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="amsterdam" data-airport="AMS" data-flag="🇳🇱" data-display="Amsterdam">
+        <span class="c-flag">🇳🇱</span>
+        <span class="c-info"><span class="c-name">Netherlands</span><span class="c-city">Amsterdam · AMS</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="toronto" data-airport="YYZ" data-flag="🇨🇦" data-display="Toronto">
+        <span class="c-flag">🇨🇦</span>
+        <span class="c-info"><span class="c-name">Canada</span><span class="c-city">Toronto · YYZ</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="new york" data-airport="JFK" data-flag="🇺🇸" data-display="New York">
+        <span class="c-flag">🇺🇸</span>
+        <span class="c-info"><span class="c-name">United States</span><span class="c-city">New York · JFK</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="frankfurt" data-airport="FRA" data-flag="🇩🇪" data-display="Frankfurt">
+        <span class="c-flag">🇩🇪</span>
+        <span class="c-info"><span class="c-name">Germany</span><span class="c-city">Frankfurt · FRA</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="paris" data-airport="CDG" data-flag="🇫🇷" data-display="Paris">
+        <span class="c-flag">🇫🇷</span>
+        <span class="c-info"><span class="c-name">France</span><span class="c-city">Paris · CDG</span></span>
+        <span class="c-check">✓</span>
+      </button>
+
+      <button class="country-option dropdown-option" data-city="sydney" data-airport="SYD" data-flag="🇦🇺" data-display="Sydney">
+        <span class="c-flag">🇦🇺</span>
+        <span class="c-info"><span class="c-name">Australia</span><span class="c-city">Sydney · SYD</span></span>
+        <span class="c-check">✓</span>
+      </button>
     </div>
 
     <main id="mainContent">
+
+      <!-- ===== GREETING ===== -->
       <section class="greeting-section">
         <p class="greeting-tag" id="greetingTag">TRAVELWISE24</p>
         <h1 class="greeting-main" id="greetingMain">Good evening 👋</h1>
         <p class="greeting-sub" id="greetingSub">Where do you want to escape to?</p>
       </section>
 
+      <!-- ===== HERO BANNER ===== -->
+      <div class="hero-banner">
+        <p class="hero-headline">Find cheap flights &amp;<br>travel smarter ✈️</p>
+        <p class="hero-sub">Routes, deals and AI travel advice — built for Africans abroad.</p>
+        <div class="hero-btns">
+          <button class="hero-btn-primary" onclick="App.openWise()">Ask Wise</button>
+          <button class="hero-btn-secondary" onclick="openFlight('dub','los')">Search Flights</button>
+        </div>
+        <p class="hero-trending"><span></span>Trending: Dublin → Lagos from €480</p>
+      </div>
+
+      <!-- ===== DEALS STRIP ===== -->
+      <div class="deals-strip">
+        <p class="deals-strip-label">🔥 Flight deals this week</p>
+        <div class="deals-scroll">
+          <div class="deal-chip" onclick="Wise.sendChip('Tell me about flights from Dublin to Lagos right now'); App.openWise()">
+            <span class="deal-chip-route">Dublin → Lagos</span>
+            <span class="deal-chip-price">from €480</span>
+            <span class="deal-chip-via">via Istanbul</span>
+          </div>
+          <div class="deal-chip" onclick="Wise.sendChip('Tell me about flights from Dublin to Accra right now'); App.openWise()">
+            <span class="deal-chip-route">Dublin → Accra</span>
+            <span class="deal-chip-price">from €520</span>
+            <span class="deal-chip-via">via Amsterdam</span>
+          </div>
+          <div class="deal-chip" onclick="Wise.sendChip('Tell me about flights from Dublin to Nairobi right now'); App.openWise()">
+            <span class="deal-chip-route">Dublin → Nairobi</span>
+            <span class="deal-chip-price">from €490</span>
+            <span class="deal-chip-via">via Addis Ababa</span>
+          </div>
+          <div class="deal-chip" onclick="Wise.sendChip('Tell me about weekend flights from Dublin to London right now'); App.openWise()">
+            <span class="deal-chip-route">Dublin → London</span>
+            <span class="deal-chip-price">from €39</span>
+            <span class="deal-chip-via">direct</span>
+          </div>
+          <div class="deal-chip" onclick="Wise.sendChip('Tell me about flights from Dublin to Dubai right now'); App.openWise()">
+            <span class="deal-chip-route">Dublin → Dubai</span>
+            <span class="deal-chip-price">from €350</span>
+            <span class="deal-chip-via">via hub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MODE TABS ===== -->
       <section class="mode-section">
         <div class="mode-tabs">
           <button class="mode-tab active" data-mode="going-home"><span>🏠</span><span>Going Home</span></button>
@@ -59,34 +165,29 @@
         </div>
       </section>
 
+      <!-- ===== DYNAMIC CONTENT (routes / escapes / vibes) ===== -->
       <section class="content-section" id="contentSection"></section>
 
-<!-- Wise AI Prompt -->
-<div class="wise-prompt">
-  ✈ Planning a trip home?
+      <!-- ===== WISE CTA BLOCK ===== -->
+      <div class="wise-cta-block">
+        <p class="wise-cta-title">Not sure where to start?</p>
+        <p class="wise-cta-sub">Ask Wise — get quick advice on routes, prices, visas and the best time to travel.</p>
+        <button class="wise-cta-btn" onclick="App.openWise()">✈️ Ask Wise</button>
+      </div>
 
-  <p>Ask Wise to find the cheapest flights, visa rules and best airlines.</p>
+      <!-- ===== QUICK SUGGESTION CHIPS ===== -->
+      <div class="wise-chips-row">
+        <button class="wise-chip-pill" onclick="Wise.sendChip('Cheapest flights from Dublin to Lagos this month'); App.openWise()">Cheapest flights to Lagos</button>
+        <button class="wise-chip-pill" onclick="Wise.sendChip('Best time of year to fly to Nigeria'); App.openWise()">Best time to fly</button>
+        <button class="wise-chip-pill" onclick="Wise.sendChip('Do Nigerians living in Ireland need a visa for Spain?'); App.openWise()">Visa requirements</button>
+        <button class="wise-chip-pill" onclick="Wise.sendChip('Budget weekend escape from Dublin under €200 total'); App.openWise()">Weekend under €200</button>
+        <button class="wise-chip-pill" onclick="Wise.sendChip('Best African restaurants in Dublin right now'); App.openWise()">African food Dublin</button>
+        <button class="wise-chip-pill" onclick="Wise.sendChip('When should I book Christmas flights to Nigeria?'); App.openWise()">Christmas flights</button>
+      </div>
 
-  <button onclick="openWise()">Ask Wise</button>
-</div>
-
-<div class="wise-suggestions">
-
-<button onclick="Wise.sendChip('Cheapest flights to Lagos')">
-Cheapest flights to Lagos
-</button>
-
-<button onclick="Wise.sendChip('Best time to fly to Nigeria')">
-Best time to travel
-</button>
-
-<button onclick="Wise.sendChip('Do Nigerians need visa for Ghana')">
-Visa requirements
-</button>
-
-</div>
     </main>
 
+    <!-- ===== WISE PANEL ===== -->
     <div class="wise-panel hidden" id="wisePanel">
       <div class="wise-header">
         <div class="wise-avatar-wrap">
@@ -115,11 +216,9 @@ Visa requirements
       </div>
     </div>
 
-    
+    <div class="overlay hidden" id="overlay"></div>
 
-</div>
-
-
+    <!-- ===== BOTTOM NAV ===== -->
     <nav class="bottom-nav">
       <button class="nav-item active" data-mode="going-home">
         <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
@@ -145,10 +244,12 @@ Visa requirements
       <button class="install-dismiss" id="installDismiss">✕</button>
     </div>
   </div>
-<script src="js/state.js"></script>
-<script src="js/api.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/wise.js"></script>
-<script src="js/app.js"></script>
+
+
+  <script src="js/state.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/wise.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
