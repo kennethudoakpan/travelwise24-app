@@ -1668,4 +1668,10 @@ body::after {
       border-color: rgba(201,169,110,0.4);
       color: #c9a96e;
     }
+    .country-dropdown {
+  position: fixed;
+  top: 60px; /* same as header height */
+  right: 10px;
+  z-index: 1000;
+}
   
