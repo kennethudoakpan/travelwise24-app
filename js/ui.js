@@ -64,7 +64,7 @@ const UI = (() => {
 
     routes.forEach(route => {
       const saved = State.isSaved(route.id);
-      const flightLink = API.getSkyscannerLink(route.from, route.to);
+      const flightLink = API.getFlightLink(route.from, route.to);
       const tagsHtml = route.tags.map(t => `<span class="route-tag">${t}</span>`).join('');
 
       html += `
@@ -130,9 +130,9 @@ const UI = (() => {
     `;
 
     escapes.forEach(dest => {
-      const flightLink = API.getSkyscannerLink(airport, dest.iata);
-      const hotelLink = API.getBookingLink(dest.city);
-      const actLink = API.getGetYourGuideLink(dest.city);
+      const flightLink = API.getFlightLink(airport, dest.iata);
+      const hotelLink = API.getHotelLink(dest.city);
+      const actLink = API.getTripLink(); // use Trip.com instead of GetYourGuide
       const saved = State.isSaved(dest.id);
       const tagsHtml = dest.tags.map(t => `<span class="escape-tag">${t}</span>`).join('');
 
@@ -299,7 +299,23 @@ const UI = (() => {
     document.getElementById('locationFlag').textContent = State.get('locationFlag');
     document.getElementById('locationName').textContent = State.get('locationDisplay');
   }
+  function getTopRoute() {
+    const airport = State.get('airport');
+    const routes = API.getRoutes(airport);
 
+    return routes[0]; // first route = most popular
+  }
+  function openHeroFlight() {
+    const route = getTopRoute();
+    const link = API.getFlightLink(route.from, route.to);
+    window.open(link, '_blank');
+  }
+
+  function openHeroHotel() {
+    const route = getTopRoute();
+    const link = API.getHotelLink(route.toCity);
+    window.open(link, '_blank');
+  }
   return {
     updateGreeting,
     renderGoingHome,
@@ -308,7 +324,9 @@ const UI = (() => {
     showMode,
     updateLocationUI,
     toggleSave,
-    wisePromptHTML
+    wisePromptHTML,
+    openHeroFlight,
+    openHeroHotel
   };
 
 })();

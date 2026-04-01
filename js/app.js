@@ -251,8 +251,20 @@ return { openWise, closeWise, showSaved, clearSaved, removeSaved };
 
 })();
 // ===== FLIGHT LINK HELPER =====
+// ===== AFFILIATE HELPERS =====
+
+// Flights (Aviasales)
+// Flights
 function openFlight(from, to) {
-  const url = `https://www.skyscanner.net/transport/flights/${from}/${to}/`;
-  window.open(url, '_blank', 'noopener');
+  window.open(`https://www.aviasales.com/search/${from}${to}?marker=458501`, '_blank', 'noopener');
 }
 
+// Hotels
+function openHotel(city) {
+  window.open(API.getBookingLink(city), '_blank', 'noopener');
+}
+
+// 🌍 Full booking (Trip.com)
+function openHotel(city) {
+  window.open(API.getBookingLink(city), '_blank', 'noopener');
+}

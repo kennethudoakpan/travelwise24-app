@@ -316,29 +316,25 @@ const API = (() => {
   };
 
   // ============================
-  // AFFILIATE LINK BUILDERS
+  // AFFILIATE LINK BUILDERS (FINAL)
   // ============================
 
-  function getSkyscannerLink(fromIata, toIata) {
-    const from = fromIata.toLowerCase();
-    const to = toIata.toLowerCase();
-    // Skyscanner affiliate redirect format
-    return `https://www.skyscanner.net/transport/flights/${from}/${to}/?adultsv2=1&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false`;
+  // ✈️ Flights (Aviasales – best for cheap flight comparison)
+  function getFlightLink(fromIata, toIata) {
+    return `https://www.aviasales.com/search/${fromIata}${toIata}?marker=458501`;
   }
 
-  function getBookingLink(city) {
-    return `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}&checkin_monthday=&checkout_monthday=&group_adults=2&no_rooms=1&group_children=0`;
+  // 🏨 Hotels (Booking.com – best for students & Europe users)
+  function getHotelLink(city) {
+    return `https://booking.tpx.lu/cH9dfczu?ss=${encodeURIComponent(city)}`;
   }
 
-  function getGetYourGuideLink(city) {
-    return `https://www.getyourguide.com/s/?q=${encodeURIComponent(city)}&searchSource=2`;
-  }
 
+  // 📍 Maps (keep this)
   function getGoogleMapsLink(query, city) {
     return `https://www.google.com/maps/search/${encodeURIComponent(query + ' ' + city)}`;
   }
 
-  // ============================
   // WEATHER (OpenWeather free tier)
   // NOTE: Replace 'YOUR_OWL_API_KEY' with your free OpenWeather API key
   // Get one free at: https://openweathermap.org/api
@@ -389,14 +385,17 @@ const API = (() => {
     if (!catData) return [];
     return catData[city] || catData['dublin'];
   }
+  function getTripLink() {
+    return "https://tpembd.com/?trs=246688&shmarker=458501";
+  }
 
   return {
     getRoutes,
     getEscapes,
     getVibes,
-    getSkyscannerLink,
-    getBookingLink,
-    getGetYourGuideLink,
+    getFlightLink,
+    getHotelLink,
+    getTripLink,
     getGoogleMapsLink,
     getWeather
   };
