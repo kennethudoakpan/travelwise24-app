@@ -2085,3 +2085,8 @@ body {
   padding: 20px;
   border-radius: 16px;
 }
+
+.highlight {
+  box-shadow: 0 0 20px rgba(38, 129, 255, 0.5);
+  transition: 0.3s;
+}

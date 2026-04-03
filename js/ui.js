@@ -306,9 +306,14 @@ const UI = (() => {
     return routes[0]; // first route = most popular
   }
   function openHeroFlight() {
-    const route = getTopRoute();
-    const link = API.getFlightLink(route.from, route.to);
-    window.open(link, '_blank');
+    const section = document.getElementById('flightWidget');
+
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+
+      section.classList.add('highlight');
+      setTimeout(() => section.classList.remove('highlight'), 2000);
+    }
   }
 
   function openHeroHotel() {
