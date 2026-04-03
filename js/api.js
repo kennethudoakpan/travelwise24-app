@@ -319,9 +319,9 @@ const API = (() => {
   // AFFILIATE LINK BUILDERS (FINAL)
   // ============================
 
-  // ✈️ Flights (Aviasales – best for cheap flight comparison)
+  // ✈️ Flights (Trip.com – dynamic + affiliate)
   function getFlightLink(fromIata, toIata) {
-    return `https://www.aviasales.com/search/${fromIata}${toIata}?marker=458501`;
+    return `https://www.trip.com/flights/${fromIata.toLowerCase()}-${toIata.toLowerCase()}/tickets?AllianceID=246688&SID=458501`;
   }
 
   // 🏨 Hotels (Booking.com – best for students & Europe users)
